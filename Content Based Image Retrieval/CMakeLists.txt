@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.10)
+project(project_2)
+
+# set(OpenCV_DIR /Users/starboy/Documents/PRCV/build_opencv)
+find_package(OpenCV REQUIRED)
+# Set the build type to Debug and disable optimizations
+# set(CMAKE_BUILD_TYPE Debug)
+# set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
+
+include_directories(include)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+add_executable(Project2 src/main.cpp src/functions.cpp include/functions.hpp include/texture.hpp src/texture.cpp)
+add_executable(histMatching src/histogramMatching.cpp src/functions.cpp include/functions.hpp include/texture.hpp src/texture.cpp)
+add_executable(textureMatching src/textureMatching.cpp src/functions.cpp include/functions.hpp include/texture.hpp src/texture.cpp)
+add_executable(customMatching src/custom.cpp include/functions.hpp src/functions.cpp include/texture.hpp src/texture.cpp)
+target_link_libraries(Project2 ${OpenCV_LIBS})
+target_link_libraries(histMatching ${OpenCV_LIBS})
+target_link_libraries(textureMatching ${OpenCV_LIBS})
+target_link_libraries(customMatching ${OpenCV_LIBS})
